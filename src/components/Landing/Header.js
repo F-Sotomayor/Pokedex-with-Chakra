@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack, Box, Text, theme } from '@chakra-ui/core';
 
-function Landing() {
+function Header() {
   return (
     <Stack>
       <Box>
@@ -13,4 +13,4 @@ function Landing() {
   );
 }
 
-export default Landing;
+export default Header;
