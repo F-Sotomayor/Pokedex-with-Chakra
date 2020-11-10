@@ -27,7 +27,7 @@ function PokeInfo({
         <TabPanel paddingX={6}>
           <PokeAbout info="Species" value={species} />
           <PokeAbout info="Height" value={`(${height} cm)`} />
-          <PokeAbout info="Weight" value={`(${weight} cm)`} />
+          <PokeAbout info="Weight" value={`(${weight} kg)`} />
           <PokeAbout info="Abilities" value={abilities} />
           <Text fontSize={24} fontWeight={600} marginY={4}>
             Breeding
