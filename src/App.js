@@ -1,48 +1,89 @@
 import React from 'react';
 import {
   ChakraProvider,
-  CSSReset,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
+  Container,
+  SimpleGrid,
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  Button,
+  Input,
 } from '@chakra-ui/core';
-import theme from '@chakra-ui/theme';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import theme from './theme';
+
+import Landing from './components/Landing/Landing';
+import PokeCard from './components/Landing/PokeCard';
 
 function App() {
+  const [pokemons, setPokemons] = React.useState([]);
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    Promise.all(
+      new Array(51)
+        .fill(true)
+        .map((_, index) => index)
+        .slice(1)
+        .map(index => {
+          return fetch(`https://pokeapi.co/api/v2/pokemon/${index}`).then(res =>
+            res.json()
+          );
+        })
+    ).then(setPokemons);
+  }, []);
+  console.log(isOpen);
   return (
     <ChakraProvider theme={theme}>
-      <CSSReset />
-      <Box textAlign="center" fontSize="xl">
-        <Grid
-          minH="100vh"
-          p={3}
-          direction="column"
-          align="center"
-          justify="center"
+      <Container
+        padding={4}
+        width="100vw"
+        minHeight="100vh"
+        height="auto"
+        overflowY="auto"
+      >
+        <Landing />
+        <SimpleGrid
+          marginTop={12}
+          columns={2}
+          spacing={2}
+          overflowY="auto"
+          height="auto"
         >
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
+          {pokemons.map(pokemon => {
+            return (
+              <PokeCard
+                onClick={() => setIsOpen(true)}
+                name={pokemon.name}
+                id={pokemon.id}
+                types={pokemon.types}
+                image={pokemon.sprites.front_default}
+                key={pokemon.id}
+              />
+            );
+          })}
+        </SimpleGrid>
+        {isOpen && (
+          <Drawer
+            size="full"
+            placement="left"
+            isOpen
+            onClose={() => setIsOpen(false)}
+          >
+            <DrawerOverlay>
+              <DrawerContent>
+                <DrawerCloseButton />
+                <DrawerHeader>Pokedex</DrawerHeader>
+
+                <DrawerBody></DrawerBody>
+              </DrawerContent>
+            </DrawerOverlay>
+          </Drawer>
+        )}
+      </Container>
     </ChakraProvider>
   );
 }
