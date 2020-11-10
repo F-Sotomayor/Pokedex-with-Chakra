@@ -51,6 +51,7 @@ function App() {
         minHeight="100vh"
         height="auto"
         overflowY="auto"
+        justifyContent="center"
       >
         <Landing />
         <SimpleGrid
