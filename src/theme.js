@@ -11,6 +11,8 @@ export default extendTheme({
     flying: theme.colors.linkedin,
     poison: theme.colors.teal,
     electric: theme.colors.yellow,
+    fighting: theme.colors.facebook,
+    fairy: theme.colors.pink,
     ground: theme.colors.orange,
     primary: theme.colors.gray,
   },
