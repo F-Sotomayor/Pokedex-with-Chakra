@@ -11,7 +11,7 @@ import theme from './theme';
 
 import Landing from './Header';
 import PokeCard from './components/PokeCard/PokeCard';
-import PokeDrawer from './components/Drawer/Drawer';
+import PokeDrawer from './components/PokeDrawer';
 
 const PAGE_SIZE = 10;
 
@@ -86,25 +86,7 @@ function App() {
           </Button>
         </Box>
         {selected && (
-          <PokeDrawer
-            setSelected={setSelected}
-            selected={selected}
-            pokename={selected.name}
-            bgtype={selected.types[0].type.name}
-            pokeid={selected.id}
-            bgtypetwo={selected.types[1]?.type?.name}
-            species={selected.species.name}
-            height={selected.height}
-            weight={selected.weight}
-            abilities={selected.abilities[0].ability.name}
-            hp={selected.stats[0].base_stat}
-            attack={selected.stats[1].base_stat}
-            defense={selected.stats[2].base_stat}
-            spatk={selected.stats[3].base_stat}
-            spdef={selected.stats[4].base_stat}
-            speed={selected.stats[5].base_stat}
-            total={selected.stats[0].base_stat}
-          />
+          <PokeDrawer onClose={() => setSelected(null)} pokemon={selected} />
         )}
       </Container>
     </ChakraProvider>

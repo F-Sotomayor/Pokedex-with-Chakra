@@ -14,39 +14,34 @@ import {
 import { StarIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import theme from '../../theme';
 import PokeInfo from './PokeInfo';
+import pokebg from '../../assets/pokebg.svg';
 
-function PokeDrawer({
-  setSelected,
-  selected,
-  bgtype,
-  pokeid,
-  pokename,
-  bgtypetwo,
-  species,
-  height,
-  weight,
-  abilities,
-  hp,
-  attack,
-  defense,
-  spatk,
-  spdef,
-  speed,
-  total,
-}) {
+function PokeDrawer({ onClose, pokemon }) {
+  const species = pokemon.species.name;
+  const height = pokemon.height;
+  const weight = pokemon.weight;
+  const abilities = pokemon.abilities[0].ability.name;
+  const hp = pokemon.stats[0].base_stat;
+  const attack = pokemon.stats[1].base_stat;
+  const defense = pokemon.stats[2].base_stat;
+  const spatk = pokemon.stats[3].base_stat;
+  const spdef = pokemon.stats[4].base_stat;
+  const speed = pokemon.stats[5].base_stat;
+  const total = pokemon.stats[0].base_stat;
+  const bgtype = pokemon.types[0].type.name;
+  const pokeid = pokemon.id;
   return (
     <ChakraProvider theme={theme}>
-      <Drawer
-        size="full"
-        placement="left"
-        isOpen
-        onClose={() => setSelected(null)}
-      >
+      <Drawer size="full" placement="left" isOpen onClose={onClose}>
         <DrawerOverlay>
           <DrawerContent
             padding={0}
             margin={0}
+            backgroundImage={`url(${pokebg})`}
             backgroundColor={`${bgtype}.300`}
+            backgroundRepeat="no-repeat"
+            backgroundSize="300px"
+            backgroundPosition="100px 150px"
           >
             <DrawerHeader
               padding={4}
@@ -55,14 +50,10 @@ function PokeDrawer({
               display="flex"
               justifyContent="space-between"
             >
-              <ArrowBackIcon
-                color="white"
-                onClick={() => setSelected(null)}
-                fontSize={32}
-              />
+              <ArrowBackIcon color="white" onClick={onClose} fontSize={32} />
               <StarIcon color="white" fontSize={24} />
             </DrawerHeader>
-            <DrawerBody padding={0} margin={0} overflowY="hidden">
+            <DrawerBody padding={0} margin={0}>
               <Flex
                 width="100%"
                 justify="space-between"
@@ -79,7 +70,7 @@ function PokeDrawer({
                     fontWeight={600}
                     color="white"
                   >
-                    {pokename}
+                    {pokemon.name}
                   </Text>
                 </Box>
                 <Box>
@@ -114,7 +105,7 @@ function PokeDrawer({
                     textTransform="capitalize"
                     fontSize={16}
                   >
-                    {bgtypetwo}
+                    {pokemon.types[1]?.type?.name}
                   </Text>
                 </Box>
               </Flex>
@@ -127,16 +118,16 @@ function PokeDrawer({
                 />
               </Flex>
               <Box
-                overflow="hidden"
                 width="100%"
-                height="50vh"
+                height={325}
                 backgroundColor="white"
                 borderTopRadius={24}
                 marginTop={-10}
+                paddingTop={1}
               >
-                <Box padding={2} marginTop={12} overflowY="auto">
+                <Box padding={2} marginTop={12}>
                   <PokeInfo
-                    overflowY="auto"
+                    bgtype={bgtype}
                     species={species}
                     height={height}
                     weight={weight}
