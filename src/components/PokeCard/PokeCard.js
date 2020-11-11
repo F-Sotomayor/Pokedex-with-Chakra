@@ -6,8 +6,8 @@ function PokeCard({ name, types, id, image, onClick }) {
     <ChakraProvider theme={theme}>
       <Flex
         onClick={onClick}
-        width={170}
-        height={140}
+        width="45vw"
+        height="22vh"
         direction="column"
         padding={3}
         backgroundColor={`${types[0].type.name}.400`}
@@ -17,7 +17,7 @@ function PokeCard({ name, types, id, image, onClick }) {
           <Text color="white">#{id}</Text>
         </Flex>
         <Flex marginTop={-2}>
-          <Text color="white" fontSize={24} textTransform="capitalize">
+          <Text color="white" fontSize={22} textTransform="capitalize">
             {name}
           </Text>
         </Flex>
@@ -50,7 +50,8 @@ function PokeCard({ name, types, id, image, onClick }) {
           </Flex>
           <Flex>
             <Image
-              height="72px"
+              marginLeft={1}
+              height="12vh"
               width="auto"
               src={`https://pokeres.bastionbot.org/images/pokemon/${id}.png`}
             />

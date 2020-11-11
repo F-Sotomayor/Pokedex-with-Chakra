@@ -46,6 +46,7 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <Container
+        overflowX="hidden"
         padding={4}
         width="100vw"
         minHeight="100vh"
@@ -55,6 +56,7 @@ function App() {
       >
         <Landing />
         <SimpleGrid
+          justifyContent="center"
           marginTop={12}
           columns={2}
           spacing={2}
@@ -62,7 +64,6 @@ function App() {
           height="auto"
         >
           {pokemons.map(pokemon => {
-            console.log(pokemon);
             return (
               <PokeCard
                 onClick={() => setSelected(pokemon)}

@@ -119,7 +119,7 @@ function PokeDrawer({ onClose, pokemon }) {
               </Flex>
               <Box
                 width="100%"
-                height={325}
+                height="55vh"
                 backgroundColor="white"
                 borderTopRadius={24}
                 marginTop={-10}
