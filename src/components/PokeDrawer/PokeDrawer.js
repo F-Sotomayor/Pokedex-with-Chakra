@@ -30,6 +30,7 @@ function PokeDrawer({ onClose, pokemon }) {
   const total = pokemon.stats[0].base_stat;
   const bgtype = pokemon.types[0].type.name;
   const pokeid = pokemon.id;
+  console.log(pokemon);
   return (
     <ChakraProvider theme={theme}>
       <Drawer size="full" placement="left" isOpen onClose={onClose}>
@@ -114,7 +115,7 @@ function PokeDrawer({ onClose, pokemon }) {
                   zIndex={12}
                   width={200}
                   height={200}
-                  src={`https://pokeres.bastionbot.org/images/pokemon/${pokeid}.png`}
+                  src={pokemon.sprites.front_default}
                 />
               </Flex>
               <Box

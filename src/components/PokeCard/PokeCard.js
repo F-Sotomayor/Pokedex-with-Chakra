@@ -49,12 +49,7 @@ function PokeCard({ name, types, id, image, onClick }) {
             </Text>
           </Flex>
           <Flex>
-            <Image
-              marginLeft={1}
-              height="12vh"
-              width="auto"
-              src={`https://pokeres.bastionbot.org/images/pokemon/${id}.png`}
-            />
+            <Image marginLeft={1} height="12vh" width="auto" src={image} />
           </Flex>
         </Flex>
       </Flex>
